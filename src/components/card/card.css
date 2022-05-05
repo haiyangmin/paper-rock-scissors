@@ -1,0 +1,40 @@
+
+.blue {
+    background-color: #211f4f;
+    border-color: #273470;
+    color: #2678de;
+}
+
+.green {
+    background-color: #1a381d;
+    border-color: #225b35;
+    color: #16c359;
+}
+
+.red {
+    background-color: #50091e;
+    border-color: #9a0e30;
+    color: #e31542;
+}
+
+.card {
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 4px;
+    padding: 16px;
+    margin: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 180px;
+    height: 150px;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+}
+
+.cardContent {
+    font-size: 24px;
+    position: absolute;
+    bottom: 0;
+}
