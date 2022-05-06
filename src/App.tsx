@@ -19,10 +19,11 @@ import {
 } from "./features/betting/bettingSlice";
 import BettingButton from "./components/bettingButton/bettingButton";
 import BettingDetailsBanner from "./components/bettingDetailsBanner/bettingDetailsBanner";
+import {Snackbar} from "@mui/material";
 
 
 function App() {
-
+    const [open, setOpen] = React.useState(false);
     const dispatch = useAppDispatch();
     const status = useAppSelector(selectStatus);
     const playerBets = useAppSelector(selectPlayerBets);
@@ -78,6 +79,7 @@ function App() {
 
     const onClick = () => {
         if (playerBets.length === 0) {
+            setOpen(true);
             return
         }
         if (status === 'idle') {
@@ -88,16 +90,31 @@ function App() {
         }
     }
 
+
+    const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
+
     return (
         <div className="app">
             <BettingDetailsBanner balance={balance} betAmount={betAmount} winAmount={winAmount}/>
-            <BettingPanel status={status} pcBetSymbol={pcBetSymbol} playerBets={playerBets} winAmount={winAmount} playerWinSymbol={playerWinSymbol}/>
+            <BettingPanel status={status} pcBetSymbol={pcBetSymbol} playerBets={playerBets} winAmount={winAmount}
+                          playerWinSymbol={playerWinSymbol}/>
             <div className="cardsContainer">
                 <BettingCard color='blue' content='ROCK' bets={betsOnRock} onClick={rockOnClick}/>
                 <BettingCard color='green' content='PAPER' bets={betsOnPaper} onClick={paperOnClick}/>
                 <BettingCard color='red' content='SCISSORS' bets={betsOnScissors} onClick={scissorsOnClick}/>
             </div>
             <BettingButton status={status} onClick={onClick}/>
+            <Snackbar
+                open={open}
+                autoHideDuration={6000}
+                onClose={handleClose}
+                message="Please place a bet"
+            />
         </div>
     );
 }
