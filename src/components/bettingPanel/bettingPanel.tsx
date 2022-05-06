@@ -59,8 +59,8 @@ export default function BettingPanel({status, pcBetSymbol, playerBets, winAmount
         if (winAmount && winAmount > 0) {
             return (
                 <div className="showResultPanel">
-                    <p className="winText">{playerWinSymbol?.toUpperCase()} WON</p>
-                    <p><span className="youWin">YOU WIN</span> {winAmount}</p>
+                    <div className="winText">{playerWinSymbol?.toUpperCase()} WON</div>
+                    <div><span className="youWin">YOU WIN</span> {winAmount}</div>
                 </div>
             );
         } else {
