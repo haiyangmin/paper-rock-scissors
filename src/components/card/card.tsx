@@ -1,18 +1,17 @@
 import './card.css';
+import React from "react";
 
 export type CardColor = 'blue' | 'green' | 'red';
 
 export interface CardProps {
     color: CardColor
-    content: string
+    children?: JSX.Element | JSX.Element[];
 }
 
-export default function Card({color, content}: CardProps) {
+export default function Card({color, children}: CardProps) {
     return (
         <div className={`card ${color}`}>
-            <p className="cardContent">
-                {content}
-            </p>
+            {children}
         </div>
     );
 }

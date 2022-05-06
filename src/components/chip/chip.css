@@ -7,7 +7,8 @@
     background: #fff;
     border: 4px solid #225eff;
     color: #000;
-    font: 24px Arial, sans-serif;
+    font: 16px Arial, sans-serif;
     display: flex;
     align-items: center;
+    justify-content: center;
 }

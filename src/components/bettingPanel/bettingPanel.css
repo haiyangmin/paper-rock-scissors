@@ -1,0 +1,47 @@
+
+.idlePanel {
+    height: 400px;
+    width: 800px;
+    color: #bca074;
+    position: relative;
+}
+
+.bettingMessage {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+}
+
+.displayingPanel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 800px;
+    color: #fafafa;
+    font-size: 48px;
+}
+
+
+.bettingPanel {
+    height: 400px;
+    width: 800px;
+}
+
+.showResultPanel {
+    height: 400px;
+    width: 800px;
+}
+
+.vs {
+    color: #d4b37f;
+}
+
+.pcBetSymbol {
+    margin-right: 30px;
+}
+
+.playerBets {
+    margin-left: 30px;
+}

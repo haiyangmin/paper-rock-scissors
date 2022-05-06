@@ -1,0 +1,13 @@
+
+.banner {
+    height: 40px;
+    width:  100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.black {
+    background-color: #161616;
+    color: #dfdfdf
+}

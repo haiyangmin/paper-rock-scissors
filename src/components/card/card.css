@@ -32,9 +32,3 @@
     cursor: pointer;
     position: relative;
 }
-
-.cardContent {
-    font-size: 24px;
-    position: absolute;
-    bottom: 0;
-}

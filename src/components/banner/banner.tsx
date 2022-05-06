@@ -1,8 +1,18 @@
-import * as React from 'react';
+import './banner.css';
+import React from "react";
 
-export default function Banner() {
+export type BannerColor = 'black';
+
+export interface BannerProps {
+    color: BannerColor
+    children?: JSX.Element | JSX.Element[];
+}
+
+export default function Banner({color, children}: BannerProps) {
     return (
-        <div>
+        <div className={`banner ${color}`}>
+            {children}
         </div>
     );
 }
+
