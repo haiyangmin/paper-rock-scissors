@@ -187,5 +187,6 @@ export const selectBetAmount = (state: RootState) => state.betting.betAmount;
 export const selectStatus = (state: RootState) => state.betting.status;
 export const selectBalance = (state: RootState) => state.betting.balance;
 export const selectPcBetSymbol = (state: RootState) => state.betting.pcBetSymbol;
+export const selectPlayerWinSymbol = (state: RootState) => state.betting.playerWinSymbol;
 
 export default bettingSlice.reducer;

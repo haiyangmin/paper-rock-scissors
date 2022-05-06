@@ -32,6 +32,11 @@
 .showResultPanel {
     height: 400px;
     width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fafafa;
+    font-size: 48px;
 }
 
 .vs {
@@ -44,4 +49,14 @@
 
 .playerBets {
     margin-left: 30px;
+}
+
+.winText {
+    font-size: 52px;
+    color: #17be58;
+}
+
+.youWin {
+    font-size: 48px;
+    color: #c0a476;
 }

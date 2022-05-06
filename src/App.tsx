@@ -12,7 +12,10 @@ import {
     selectPlayerBets,
     selectStatus,
     Bet,
-    selectWinAmount, selectBetAmount, selectPcBetSymbol
+    selectWinAmount,
+    selectBetAmount,
+    selectPcBetSymbol,
+    selectPlayerWinSymbol
 } from "./features/betting/bettingSlice";
 import BettingButton from "./components/bettingButton/bettingButton";
 import BettingDetailsBanner from "./components/bettingDetailsBanner/bettingDetailsBanner";
@@ -27,6 +30,7 @@ function App() {
     const winAmount = useAppSelector(selectWinAmount);
     const betAmount = useAppSelector(selectBetAmount);
     const pcBetSymbol = useAppSelector(selectPcBetSymbol);
+    const playerWinSymbol = useAppSelector(selectPlayerWinSymbol);
 
     let isBettingOnRockAllowed = true;
     let isBettingOnPaperAllowed = true;
@@ -87,7 +91,7 @@ function App() {
     return (
         <div className="app">
             <BettingDetailsBanner balance={balance} betAmount={betAmount} winAmount={winAmount}/>
-            <BettingPanel status={status} pcBetSymbol={pcBetSymbol} playerBets={playerBets}/>
+            <BettingPanel status={status} pcBetSymbol={pcBetSymbol} playerBets={playerBets} winAmount={winAmount} playerWinSymbol={playerWinSymbol}/>
             <div className="cardsContainer">
                 <BettingCard color='blue' content='ROCK' bets={betsOnRock} onClick={rockOnClick}/>
                 <BettingCard color='green' content='PAPER' bets={betsOnPaper} onClick={paperOnClick}/>

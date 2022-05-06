@@ -5,9 +5,16 @@ export interface BettingPanelProps {
     status: GameStatus
     pcBetSymbol: BetSymbol | null
     playerBets: Bet[]
+    winAmount?: number
+    playerWinSymbol?: BetSymbol | null
 }
 
-export default function BettingPanel({status, pcBetSymbol, playerBets}: BettingPanelProps) {
+export default function BettingPanel({status, pcBetSymbol, playerBets, winAmount, playerWinSymbol}: BettingPanelProps) {
+
+    const playerBetSymbols = playerBets.map(_ => _.betSymbol);
+    const betSymbolsWithoutDuplicates = playerBetSymbols.filter((symbol, index) => {
+        return playerBetSymbols.indexOf(symbol) === index;
+    });
 
     if (status === 'idle') {
         return (
@@ -28,16 +35,24 @@ export default function BettingPanel({status, pcBetSymbol, playerBets}: BettingP
                 <div className="vs"> VS</div>
                 <div className="playerBets">
                     {
-                        playerBets.map((bet) => <div key={bet.betSymbol}> {bet.betSymbol.toUpperCase()} </div>)
+                        betSymbolsWithoutDuplicates.map((symbol) => <div key={symbol}> {symbol.toUpperCase()} </div>)
                     }
                 </div>
             </div>
         );
     } else {
-        return (
-            <div className="showResultPanel">
-                <p>win</p>
-            </div>
-        );
+        if (winAmount && winAmount > 0) {
+            return (
+                <div className="showResultPanel">
+                    <p className="winText">{playerWinSymbol?.toUpperCase()} WON</p>
+                    <p><span className="youWin">YOU WIN</span> {winAmount}</p>
+                </div>
+            );
+        } else {
+            return (
+                <div className="showResultPanel">
+                </div>
+            );
+        }
     }
 }
