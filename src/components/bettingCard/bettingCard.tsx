@@ -7,16 +7,17 @@ export interface BettingCardProps {
     color: CardColor
     content: string
     bets?: number[];
+    highLight?: boolean
     onClick?: () => void
 }
 
-export default function BettingCard({color, content, bets = [], onClick}: BettingCardProps) {
+export default function BettingCard({color, content, bets = [], highLight, onClick}: BettingCardProps) {
 
     const calculateTotalBet = bets.reduce((sum, bet) => sum + bet, 0);
 
     return (
         <div onClick={onClick}>
-            <Card color={color}>
+            <Card color={color} highLight={highLight}>
                 <>
                     {bets.length > 0 && (
                         <Chip value={calculateTotalBet}/>

@@ -61,25 +61,35 @@ export function calculateWinner(pc: BetSymbol, player: BetSymbol) {
     }
 }
 
-export function calculateWinAmount(pc: BetSymbol, playerBet: Bet[]) {
-    if (playerBet.length === 1) {
-        if (calculateWinner(pc, playerBet[0].betSymbol) === playerBet[0].betSymbol) {
-            return playerBet[0].betAmount * 14;
+export function calculateWinAmount(pc: BetSymbol, playerBets: Bet[]) {
+    const betsOnRock: BetSymbol[] = playerBets.filter(_ => _.betSymbol === 'rock').map(_ => _.betSymbol);
+    const betsOnPaper: BetSymbol[] = playerBets.filter(_ => _.betSymbol === 'paper').map(_ => _.betSymbol);
+    const betsOnScissors: BetSymbol[] = playerBets.filter(_ => _.betSymbol === 'scissors').map(_ => _.betSymbol);
+    const playerBetSymbols: BetSymbol[] = [];
+    const symbols: BetSymbol[] = ['rock','paper','scissors'];
+
+    symbols.forEach((symbol) => {
+        if (betsOnRock.includes(symbol) || betsOnPaper.includes(symbol) || betsOnScissors.includes(symbol)) {
+            playerBetSymbols.push(symbol)
+        }
+    })
+
+    if (playerBetSymbols.length === 1) {
+        if (calculateWinner(pc, playerBetSymbols[0]) === playerBetSymbols[0]) {
+            return playerBets[0].betAmount * playerBets.length * 14;
         } else {
             return 0
         }
     } else {
-        const winner: string[] = [];
-        let winAmount = 0;
-        playerBet.forEach((bet) => {
-            winner.push(calculateWinner(pc, bet.betSymbol));
-        })
-        playerBet.forEach((bet) => {
-            if (winner.includes(bet.betSymbol)) {
-                winAmount = bet.betAmount + 2 * bet.betAmount
-            }
-        })
-        return winAmount
+        const playerWinSymbol = getPlayerWinSymbol(pc, playerBets);
+        if (playerWinSymbol) {
+            const filteredPlayerBets = playerBets.filter((bet) => {
+                return playerWinSymbol === bet.betSymbol
+            })
+            return filteredPlayerBets[0].betAmount * filteredPlayerBets.length * 2 + filteredPlayerBets[0].betAmount * filteredPlayerBets.length;
+        } else {
+            return 0
+        }
     }
 }
 
@@ -88,14 +98,10 @@ export function getPlayerWinSymbol(pc: BetSymbol, playerBet: Bet[]): BetSymbol |
         return playerBet[0].betSymbol
     }
     if (playerBet.length === 2) {
-        const winner: string[] = [];
         let playerWinSymbol = null;
         playerBet.forEach((bet) => {
-            winner.push(calculateWinner(pc, bet.betSymbol));
-        })
-        playerBet.forEach((bet) => {
-            if (winner.includes(bet.betSymbol)) {
-                playerWinSymbol = bet.betSymbol
+            if (calculateWinner(pc, bet.betSymbol) === bet.betSymbol) {
+                playerWinSymbol = bet.betSymbol;
             }
         })
         return playerWinSymbol

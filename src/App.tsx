@@ -47,7 +47,7 @@ function App() {
             betAmount: 500
         }
         isBettingOnRockAllowed = checkAllowBet('rock', [...playerBets, ...[bet]], balance)
-        if (isBettingOnRockAllowed) {
+        if (isBettingOnRockAllowed && status === 'idle') {
             dispatch(placeBet(bet));
             betsOnRock.push(bet.betAmount);
         }
@@ -59,7 +59,7 @@ function App() {
             betAmount: 500
         }
         isBettingOnPaperAllowed = checkAllowBet('paper', [...playerBets, ...[bet]], balance)
-        if (isBettingOnPaperAllowed) {
+        if (isBettingOnPaperAllowed && status === 'idle') {
             dispatch(placeBet(bet))
             betsOnPaper.push(bet.betAmount)
         }
@@ -71,7 +71,7 @@ function App() {
             betAmount: 500
         }
         isBettingOnScissorsAllowed = checkAllowBet('scissors', [...playerBets, ...[bet]], balance);
-        if (isBettingOnScissorsAllowed) {
+        if (isBettingOnScissorsAllowed && status === 'idle') {
             dispatch(placeBet(bet))
             betsOnScissors.push(bet.betAmount)
         }
@@ -104,16 +104,18 @@ function App() {
             <BettingPanel status={status} pcBetSymbol={pcBetSymbol} playerBets={playerBets} winAmount={winAmount}
                           playerWinSymbol={playerWinSymbol}/>
             <div className="cardsContainer">
-                <BettingCard color='blue' content='ROCK' bets={betsOnRock} onClick={rockOnClick}/>
-                <BettingCard color='green' content='PAPER' bets={betsOnPaper} onClick={paperOnClick}/>
-                <BettingCard color='red' content='SCISSORS' bets={betsOnScissors} onClick={scissorsOnClick}/>
+                <BettingCard color='blue' content='ROCK' bets={betsOnRock} highLight={playerWinSymbol === 'rock'}
+                             onClick={rockOnClick}/>
+                <BettingCard color='green' content='PAPER' bets={betsOnPaper} highLight={playerWinSymbol === 'paper'}
+                             onClick={paperOnClick}/>
+                <BettingCard color='red' content='SCISSORS' bets={betsOnScissors} highLight={playerWinSymbol === 'scissors'} onClick={scissorsOnClick}/>
             </div>
             <BettingButton status={status} onClick={onClick}/>
             <Snackbar
                 open={open}
                 autoHideDuration={6000}
                 onClose={handleClose}
-                message="Please place a bet"
+                message= "Please place a bet"
             />
         </div>
     );
