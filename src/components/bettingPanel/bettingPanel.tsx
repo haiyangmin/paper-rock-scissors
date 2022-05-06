@@ -1,5 +1,6 @@
 import './bettingPanel.css';
 import {Bet, BetSymbol, GameStatus} from "../../features/betting/bettingSlice";
+import {CountdownCircleTimer} from 'react-countdown-circle-timer'
 
 export interface BettingPanelProps {
     status: GameStatus
@@ -25,7 +26,21 @@ export default function BettingPanel({status, pcBetSymbol, playerBets, winAmount
     } else if (status === 'betting') {
         return (
             <div className="bettingPanel">
-                <p>{pcBetSymbol}</p>
+                <CountdownCircleTimer
+                    isPlaying
+                    duration={3}
+                    trailColor='#e3e3e3'
+                    colors={['#16c359', '#A30000', '#A30000']}
+                    colorsTime={[2, 1, 0]}
+                >
+                    {({remainingTime}) => {
+                        return (
+                            <div className='timer'>
+                                {remainingTime}
+                            </div>
+                        )
+                    }}
+                </CountdownCircleTimer>
             </div>
         );
     } else if (status === 'displaying') {

@@ -27,6 +27,10 @@
 .bettingPanel {
     height: 400px;
     width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .showResultPanel {
@@ -59,4 +63,9 @@
 .youWin {
     font-size: 48px;
     color: #c0a476;
+}
+
+.timer {
+    font-size: 24px;
+    color: white;
 }
