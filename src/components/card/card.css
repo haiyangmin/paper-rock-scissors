@@ -34,6 +34,27 @@
 }
 
 .highLight {
-    border-width: 4px;
+    border-width: 2px;
     border-color: #16c359;
+    animation-name: stretch;
+    animation-duration: 2.0s;
+    animation-timing-function: ease-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+    box-sizing: border-box;
+}
+
+@keyframes stretch {
+    0% {
+        box-shadow: 0 0 0 0 #16c359;
+    }
+
+    70% {
+        box-shadow: 0 0 0 4px #16c359;
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 #16c359;
+    }
 }
